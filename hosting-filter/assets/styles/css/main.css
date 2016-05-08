@@ -6612,22 +6612,29 @@ body {
 
 .container {
   max-width: 600px;
-  position: relative;
   margin-top: 20px; }
 
-.logo-container h1 {
-  position: absolute;
-  left: -200px;
-  top: 0;
+header .logo-container h1 {
   color: #fff;
   margin-top: 0;
   text-transform: uppercase;
-  font-weight: 600; }
+  font-weight: 600;
+  font-size: 1.2em;
+  border-bottom: 1px solid rgba(173, 255, 47, 0.2);
+  display: inline-block;
+  padding-bottom: 5px; }
+header ul li a {
+  color: #fff; }
+  header ul li a:hover {
+    color: greenyellow;
+    text-decoration: none; }
 
 .icon-container i {
   margin-top: 42px;
-  color: #00ba00;
+  color: rgba(255, 255, 255, 0.5);
   font-size: 1.5em; }
+  .icon-container i:hover {
+    color: rgba(255, 255, 255, 0.8); }
 
 .filter-form .form-group-wrapper {
   padding: 20px;
@@ -6665,31 +6672,40 @@ body {
   .filter-form .form-group-wrapper .selected-details p {
     border: 1px solid rgba(255, 255, 255, 0.1);
     color: #fff;
-    margin: 0;
     padding: 8px 13px;
     font-size: 1em;
     display: inline-block;
     text-transform: uppercase;
-    margin-top: 10px; }
+    margin: 10px 0 0 0; }
     .filter-form .form-group-wrapper .selected-details p span {
       color: greenyellow; }
   .filter-form .form-group-wrapper .btn-group, .filter-form .form-group-wrapper .single-button {
     width: 100%; }
     .filter-form .form-group-wrapper .btn-group .btn, .filter-form .form-group-wrapper .single-button .btn {
-      border: none;
       background: none;
       -webkit-border-radius: 0;
       border-radius: 0;
       background-clip: padding-box;
       /* stops bg color from leaking outside the border: */
       font-size: 1.1em;
-      padding: 8px;
-      width: 50%; }
+      padding: 7px 8px;
+      width: 50%;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      color: rgba(255, 255, 255, 0.4); }
+      .filter-form .form-group-wrapper .btn-group .btn:hover, .filter-form .form-group-wrapper .single-button .btn:hover {
+        border-color: rgba(255, 255, 255, 0.4); }
     .filter-form .form-group-wrapper .btn-group .active, .filter-form .form-group-wrapper .single-button .active {
-      background-color: #56647a !important; }
+      background-color: #56647a !important;
+      color: #fff; }
   .filter-form .form-group-wrapper .single-button .btn {
     width: 100% !important;
-    border: 1px solid rgba(255, 255, 255, 0.1); }
+    margin-top: 10px; }
+  .filter-form .form-group-wrapper .multi-button .btn {
+    width: 100%;
+    margin-bottom: 10px;
+    text-align: left; }
+    .filter-form .form-group-wrapper .multi-button .btn:focus {
+      outline: none; }
 
 .slider .rz-bubble {
   color: white; }
@@ -6739,5 +6755,18 @@ body {
   .ui-select-container ul.ui-select-choices li a {
     padding: 8px 10px;
     color: #fff; }
+
+.results ul {
+  color: white;
+  width: 50%;
+  float: left;
+  background-color: rgba(255, 255, 255, 0.05);
+  border-right: 2px solid #2C333E;
+  -webkit-border-radius: 2px;
+  border-radius: 2px;
+  background-clip: padding-box;
+  /* stops bg color from leaking outside the border: */
+  padding-top: 20px;
+  padding-bottom: 20px; }
 
 /*# sourceMappingURL=main.css.map */

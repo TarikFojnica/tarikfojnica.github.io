@@ -15,27 +15,47 @@ body {
 
 .container {
 	max-width: 600px;
-	position: relative;
 	margin-top: 20px;
 }
 
-.logo-container {
-	h1 {
-		position: absolute;
-		left: -200px;
-		top: 0;
-		color: #fff;
-		margin-top: 0;
-		text-transform: uppercase;
-		font-weight: 600;
+header {
+	.logo-container {
+
+		h1 {
+			color: #fff;
+			margin-top: 0;
+			text-transform: uppercase;
+			font-weight: 600;
+			font-size: 1.2em;
+			border-bottom: 1px solid rgba(greenyellow, .2);
+			display: inline-block;
+			padding-bottom: 5px;
+		}
+	}
+
+	ul {
+		li {
+			a {
+				color: #fff;
+
+				&:hover {
+					color: greenyellow;
+					text-decoration: none;
+				}
+			}
+		}
 	}
 }
 
 .icon-container {
 	i {
 		margin-top: 42px;
-		color: #00ba00;
+		color: rgba(255,255,255,.5);
 		font-size: 1.5em;
+
+		&:hover {
+			color: rgba(255,255,255,.8);
+		}
 	}
 }
 
@@ -81,12 +101,11 @@ body {
 			p {
 				border: 1px solid rgba(255,255,255,.1);
 				color: #fff;
-				margin: 0;
 				padding: 8px 13px;
 				font-size: 1em;
 				display: inline-block;
 				text-transform: uppercase;
-				margin-top: 10px;
+				margin: 10px 0 0 0;
 
 				span {
 					color: greenyellow;
@@ -97,23 +116,41 @@ body {
 		.btn-group, .single-button{
 			width: 100%;
 			.btn {
-				border: none;
 				background: none;
 				@include border-radius(0);
 				font-size: 1.1em;
-				padding: 8px;
+				padding: 7px 8px;
 				width: 50%;
+				border: 1px solid rgba(255,255,255,.1);
+				color: rgba(255,255,255,.4);
+
+				&:hover {
+					border-color: rgba(255,255,255,.4);
+				}
 			}
 
 			.active {
 				background-color: lighten($color-primary, 20%) !important;
+				color: #fff;
 			}
 		}
 
 		.single-button {
 			.btn {
 				width: 100% !important;
-				border: 1px solid rgba(255,255,255,.1);
+				margin-top: 10px;
+			}
+		}
+
+		.multi-button {
+			.btn {
+				width: 100%;
+				margin-bottom: 10px;
+				text-align: left;
+
+				&:focus {
+					outline: none;
+				}
 			}
 		}
 
@@ -195,6 +232,19 @@ body {
 				color: #fff;
 			}
 		}
+	}
+}
+
+.results {
+	ul {
+		color: white;
+		width: 50%;
+		float: left;
+		background-color: rgba(255, 255, 255, .05);
+		border-right: 2px solid $color-primary;
+		@include border-radius(2px);
+		padding-top: 20px;
+		padding-bottom: 20px;
 	}
 }
 

@@ -1,0 +1,293 @@
+<div class="filter-form">
+	<form class="form-horizontal" ng-submit="getData()">
+
+		<!--Host type-->
+		<div class="form-group-wrapper">
+			<div class="form-group">
+				<div class="col-sm-11">
+					<label class="control-label">Host Type</label>
+					<ui-select ng-model="hosting.type" theme="bootstrap" title="Select">
+						<ui-select-match placeholder="Select">{{$select.selected.name}}</ui-select-match>
+						<ui-select-choices repeat="type in hostingTypes | filter: $select.search">
+							<span>{{type.name}}</span>
+						</ui-select-choices>
+					</ui-select>
+
+					<div class="selected-details">
+						<p>
+							<span>{{hosting.type.name}}</span>
+						</p>
+					</div>
+				</div>
+
+				<div class="col-sm-1">
+					<div class="icon-container">
+						<i class="fa fa-question-circle" aria-hidden="true"></i>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!--Budget-->
+		<div class="form-group-wrapper">
+			<div class="form-group">
+				<div class="col-sm-11">
+					<label class="control-label">Budget per month</label>
+					<rzslider
+						class="slider"
+						rz-slider-model="hosting.budget.min"
+						rz-slider-high="hosting.budget.max"
+						rz-slider-options="hosting.budget.options">
+					</rzslider>
+
+					<div class="selected-details">
+						<p>
+							From <span>${{hosting.budget.min}}</span> to <span>${{hosting.budget.max}}</span> /month
+						</p>
+					</div>
+				</div>
+
+				<div class="col-sm-1">
+					<div class="icon-container">
+						<i class="fa fa-question-circle" aria-hidden="true"></i>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!--Bandwidth-->
+		<div class="form-group-wrapper">
+			<div class="form-group">
+				<div class="col-sm-11">
+					<label class="control-label">Bandwidth</label>
+					<rzslider
+						class="slider"
+						rz-slider-model="hosting.bandwidth.min"
+						rz-slider-options="hosting.bandwidth.options">
+					</rzslider>
+
+					<div class="row">
+						<div class="col-md-4">
+
+							<div class="selected-details">
+								<p>
+									<span ng-hide="hosting.bandwidth.unlimited === 1">At least {{hosting.bandwidth.min}} GB</span>
+									<span ng-show="hosting.bandwidth.unlimited === 1">Unlimited</span>
+								</p>
+							</div>
+						</div>
+
+						<div class="col-md-8">
+							<div class="single-button">
+								<button type="button" class="btn btn-primary" ng-model="hosting.bandwidth.unlimited" uib-btn-checkbox btn-checkbox-true="1" btn-checkbox-false="0">
+									<i ng-show="hosting.bandwidth.unlimited === 1" class="fa fa-check-circle" aria-hidden="true"></i> I want unlimited bandwidth
+								</button>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="col-sm-1">
+					<div class="icon-container">
+						<i class="fa fa-question-circle" aria-hidden="true"></i>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!--Disk space-->
+		<div class="form-group-wrapper">
+			<div class="form-group">
+				<div class="col-sm-11">
+					<label class="control-label">Disk Space</label>
+					<rzslider
+						class="slider"
+						rz-slider-model="hosting.diskSpace.min"
+						rz-slider-options="hosting.diskSpace.options">
+					</rzslider>
+
+					<div class="row">
+						<div class="col-md-4">
+
+							<div class="selected-details">
+								<p>
+									<span ng-hide="hosting.diskSpace.unlimited === 1">At least {{hosting.diskSpace.min}} GB</span>
+									<span ng-show="hosting.diskSpace.unlimited === 1">Unlimited</span>
+								</p>
+							</div>
+						</div>
+
+						<div class="col-md-8">
+							<div class="single-button">
+								<button type="button" class="btn btn-primary" ng-model="hosting.diskSpace.unlimited" uib-btn-checkbox btn-checkbox-true="1" btn-checkbox-false="0">
+									<i ng-show="hosting.diskSpace.unlimited === 1" class="fa fa-check-circle" aria-hidden="true"></i> I want unlimited disk space
+								</button>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="col-sm-1">
+					<div class="icon-container">
+						<i class="fa fa-question-circle" aria-hidden="true"></i>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!--Number of websites-->
+		<div ng-show="hosting.type.call !== 'vps'" class="form-group-wrapper">
+			<div class="form-group">
+				<div class="col-sm-11">
+					<label class="control-label">Number of Websites</label>
+					<rzslider
+						class="slider"
+						rz-slider-model="hosting.numberOfWebsites.min"
+						rz-slider-options="hosting.numberOfWebsites.options">
+					</rzslider>
+
+					<div class="row">
+						<div class="col-md-4">
+
+							<div class="selected-details">
+								<p ng-hide="hosting.numberOfWebsites.unlimited === 1">
+									At least <span>{{hosting.numberOfWebsites.min}}</span>
+								</p>
+
+								<p ng-show="hosting.numberOfWebsites.unlimited === 1">
+									<span>Unlimited</span>
+								</p>
+
+							</div>
+						</div>
+
+						<div class="col-md-8">
+							<div class="single-button">
+								<button type="button" class="btn btn-primary" ng-model="hosting.numberOfWebsites.unlimited" uib-btn-checkbox btn-checkbox-true="1" btn-checkbox-false="0">
+									<i ng-show="hosting.numberOfWebsites.unlimited === 1" class="fa fa-check-circle" aria-hidden="true"></i> I want unlimited number of websites
+								</button>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="col-sm-1">
+					<div class="icon-container">
+						<i class="fa fa-question-circle" aria-hidden="true"></i>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!--Ram-->
+		<div ng-show="hosting.type.call == 'vps'" class="form-group-wrapper">
+			<div class="form-group">
+				<div class="col-sm-11">
+					<label class="control-label">RAM</label>
+					<rzslider
+						class="slider"
+						rz-slider-model="hosting.ram.min"
+						rz-slider-options="hosting.ram.options">
+					</rzslider>
+
+					<div class="row">
+						<div class="col-md-4">
+
+							<div class="selected-details">
+								<p>
+									At least <span>{{hosting.ram.final}}
+									<span ng-show="hosting.ram.final > 16">MB</span>
+									<span ng-hide="hosting.ram.final > 16">GB</span>
+								</span>
+								</p>
+							</div>
+						</div>
+
+					</div>
+				</div>
+
+				<div class="col-sm-1">
+					<div class="icon-container">
+						<i class="fa fa-question-circle" aria-hidden="true"></i>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!--CPU-->
+		<div ng-show="hosting.type.call == 'vps'" class="form-group-wrapper">
+			<div class="form-group">
+				<div class="col-sm-11">
+					<label class="control-label">CPU</label>
+					<rzslider
+						class="slider"
+						rz-slider-model="hosting.cpu.min"
+						rz-slider-options="hosting.cpu.options">
+					</rzslider>
+
+					<div class="row">
+						<div class="col-md-4">
+
+							<div class="selected-details">
+								<p>
+									At least <span>{{hosting.cpu.min}} Cores</span>
+								</p>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="col-sm-1">
+					<div class="icon-container">
+						<i class="fa fa-question-circle" aria-hidden="true"></i>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!--Additional features-->
+		<div ng-show="hosting.type.call !== 'vps'" class="form-group-wrapper">
+			<div class="form-group">
+				<div class="col-sm-11">
+					<label class="control-label">Additional Features</label>
+					<div class="btn-group multi-button">
+						<label class="btn btn-primary" ng-model="hosting.freeDomain" uib-btn-checkbox><i ng-show="hosting.freeDomain" class="fa fa-check-circle" aria-hidden="true"></i> Free Domain</label>
+						<label class="btn btn-primary" ng-model="hosting.controlPanel" uib-btn-checkbox><i ng-show="hosting.controlPanel" class="fa fa-check-circle" aria-hidden="true"></i> Control Panel</label>
+					</div>
+				</div>
+
+				<div class="col-sm-1">
+					<div class="icon-container">
+						<i class="fa fa-question-circle" aria-hidden="true"></i>
+					</div>
+
+				</div>
+			</div>
+		</div>
+
+		<!--Submit btn-->
+		<div class="form-group-wrapper">
+			<div class="form-group submit-btn-container">
+				<div class="col-lg-12">
+					<button type="submit" class="btn btn-success">Get Hosting List</button>
+				</div>
+			</div>
+		</div>
+	</form>
+</div>
+
+<div class="results">
+	<ul ng-repeat="result in results">
+		<li>
+			{{result.host}}
+		</li>
+
+		<li>
+			{{result.plan}}
+		</li>
+
+		<li>
+			${{result.price}}/month
+		</li>
+	</ul>
+</div>
