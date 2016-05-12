@@ -1,0 +1,83 @@
+<div class="row">
+	<div class="col-lg-12">
+		<div class="current-place">
+			<h2>{{location.city}}, <span>{{location.date}}</span></h2>
+		</div>
+	</div>
+</div>
+
+
+<div class="row">
+	<div class="col-lg-6 col-lg-offset-3">
+		<div class="current-weather">
+			<div class="icon-container">
+				<img ng-src="assets/img/{{forecasts.currently.icon}}.png" alt="">
+			</div>
+
+			<div class="description">
+				<p>
+					{{forecasts.currently.summary}}
+					<span ng-show="forecasts.currently.temperature != NaN">
+					<sup>o</sup>C
+					{{convertFahrenheit(forecasts.currently.temperature)}}
+				</span>
+				</p>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="detailed-weather">
+
+	<div class="navigation">
+		<div class="btn-group">
+			<label class="btn btn-success" ng-model="switch" uib-btn-radio="'today'">Today</label>
+			<label ng-click="getLast30DaysForecasts(location.lat, location.lng);" class="btn btn-success" ng-model="switch"
+						 uib-btn-radio="'30days'">Last 30 Days</label>
+		</div>
+	</div>
+
+	<div class="all-day-weather" ng-show="switch == 'today'">
+		<div class="row">
+			<div class="col-md-2" ng-repeat="forecast in forecasts.hourly | limitTo: 12">
+				<div class="element">
+					<div class="time">
+						<p>
+							<i class="fa fa-clock-o" aria-hidden="true"></i> {{convertUnixToDate(forecast.time).onlyHours}}:00
+						</p>
+					</div>
+
+					<div class="icon-container">
+						<img ng-src="assets/img/{{forecast.icon}}.png" alt="">
+					</div>
+
+					<div class="summary">
+						<p>
+							{{forecast.summary}} <span><sup>o</sup>C	{{convertFahrenheit(forecast.temperature)}}</span>
+						</p>
+					</div>
+				</div>
+			</div>
+
+		</div>
+	</div>
+
+	<div class="last-month-weather" ng-show="switch  == '30days'">
+		<table class="table table-hover ">
+			<tbody>
+			<tr ng-repeat="forecast in forecasts.last30Days | orderBy: 'currently.time'">
+				<td>{{convertUnixToDate(forecast.currently.time).date}}</td>
+				<td><img ng-src="assets/img/{{forecast.currently.icon}}.png" alt=""></td>
+				<td>
+					<sup>o</sup>C
+					{{convertFahrenheit(forecast.currently.temperature)}}
+				</td>
+
+				<td>{{forecast.currently.summary}}</td>
+			</tr>
+			</tbody>
+		</table>
+	</div>
+</div>
+
+

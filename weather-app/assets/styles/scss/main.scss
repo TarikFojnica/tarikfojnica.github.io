@@ -1,0 +1,231 @@
+
+@import "bootstrap.min";
+@import "mixins";
+@import "loading-bar.min";
+@import "ng-animate";
+
+$color-primary: #fff;
+$color-secondary: #D5473E;
+$green1: #396B76;
+$green2: #99A18A;
+$line: rgba(255, 255, 255, .1);
+
+body {
+	min-height: 100vh;
+	@include gradient-horizontal($green1, $green2);
+	overflow-y: scroll;
+}
+
+p {
+	margin-bottom: 0;
+}
+
+header {
+	border-bottom: 1px solid $line;
+
+	.logo {
+		h1 {
+			color: #fff;
+			font-size: 1.8em;
+			font-weight: 300;
+			@media (max-width: 991px) {
+				text-align: center;
+			}
+
+			img {
+				width: 1.3em;
+				margin-top: -3px;
+				margin-right: 5px;
+			}
+		}
+	}
+
+	nav {
+		ul {
+			list-style-type: none;
+			margin: 25px 0 0 0;
+
+			li {
+				a {
+					color: #fff;
+
+					&:hover {
+						color: yellow;
+					}
+				}
+			}
+		}
+	}
+}
+
+.btn {
+	@include border-radius(2px)
+}
+
+.form-container {
+	@media (max-width: 991px) {
+		margin-bottom: 10px;
+	}
+
+
+	.form-group {
+		input {
+			@include border-radius(2px);
+			height: auto;
+		}
+
+		button {
+			&.btn {
+				display: block;
+				width: 100%;
+				background: none;
+				border: 1px solid rgba(255, 255, 255, .5);
+				color: #fff;
+
+				@media (max-width: 768px) {
+					margin-top: 10px;
+				}
+
+
+				&:hover {
+					background-color: #fff;
+					color: $green1;
+				}
+			}
+		}
+	}
+}
+
+.place-info {
+	margin: 15px 0;
+	h2 {
+		text-align: center;
+		color: #fff;
+		font-weight: 300;
+		margin: 0;
+
+		span {
+			font-weight: 400;
+		}
+	}
+}
+
+.current-place {
+	text-align: center;
+
+	h2 {
+		color: #fff;
+		font-size: 1.7em;
+
+	}
+}
+
+.current-weather {
+	text-align: center;
+	margin: 50px 0;
+
+	img {
+		max-width: 100%;
+		width: 150px;
+	}
+
+	.description {
+		p {
+			font-size: 1.5em;
+			margin-top: 15px;
+			color: #fff;
+
+			span {
+				background-color: rgba(255, 255, 255, .1);
+				@include border-radius(2px);
+				padding: 3px 7px;
+				font-size: .9em;
+				margin-left: 7px;;
+			}
+		}
+	}
+}
+
+.detailed-weather {
+	border-top: 1px solid rgba(255, 255, 255, .1);
+
+	.navigation {
+		text-align: center;
+		margin-top: 20px;
+		margin-bottom: 20px;
+
+		.btn-group {
+			.btn {
+				background: none;
+				border: 1px solid #fff;
+				@include border-radius(0);
+				padding: 8px 20px;
+				font-weight: 500;
+			}
+
+			.active {
+				background-color: #fff;
+				color: $green1;
+			}
+		}
+	}
+}
+
+.all-day-weather {
+
+	.element {
+		background-color: rgba(255, 255, 255, .15);
+		padding: 10px;
+		text-align: center;
+		@include border-radius(2px);
+		color: #fff;
+		margin-bottom: 20px;
+		min-height: 180px;
+
+		.time {
+
+			border-bottom: 1px solid rgba(255, 255, 255, .2);
+			p {
+				padding: 3px;
+			}
+		}
+
+		.icon-container {
+			padding: 20px;
+			img {
+				width: 50px;
+			}
+		}
+
+		.summary {
+			p {
+				span {
+					font-size: .85em;
+					background-color: rgba(255, 255, 255, .1);
+					@include border-radius(2px);
+					padding: 2px 7px;
+				}
+			}
+		}
+	}
+}
+
+.last-month-weather {
+	table {
+		tr {
+			&:hover {
+				background-color: rgba(255, 255, 255, .1);
+			}
+
+			td {
+				border-top: 1px solid rgba(255, 255, 255, .1);
+				color: #fff;
+				width: 25%;
+
+				img {
+					width: 32px;
+				}
+			}
+		}
+	}
+}
